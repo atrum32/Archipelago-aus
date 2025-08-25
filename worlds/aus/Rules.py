@@ -106,10 +106,10 @@ class AUSRules:
         dark_grotto_location_rules = {
             L_DARK_GROTTO_UPPER: lambda state: self.has_yellow_energy(state) and self.jump_height_min(state, 7),
             L_DARK_GROTTO_CAMPSITE: true,
-            L_DARK_GROTTO_BOSS: true,
-            L_DARK_GROTTO_POSTBOSS: true,
+            L_DARK_GROTTO_BOSS: lambda state: self.can_light_torches(state),
+            L_DARK_GROTTO_POSTBOSS: lambda state: self.can_light_torches(state),
             L_DARK_GROTTO_TORCHES: lambda state: self.can_light_torches(state),
-            L_DARK_GROTTO_FLOWER: true,
+            L_DARK_GROTTO_FLOWER: lambda state: self.can_light_torches(state),
         }
 
         deepdive_location_rules = {
