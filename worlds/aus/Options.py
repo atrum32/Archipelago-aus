@@ -59,6 +59,12 @@ class DisableHeartBarriers(Toggle):
     """Removes all heart barriers from the world, making their checks easier by not requiring you to reach them without taking damage"""
     display_name = "Disable All Heart Barriers"
 
+class HardLogic(Toggle):
+    """Adds several difficult jumps into logic.
+    This assumes a deep knowledge of the game and ability to perform jumps that are either very precise, unintended, or unintuitive.
+    None of these require damage boosting, as logic always assumes maximum difficulty"""
+    display_name = "Enable Unintuitive and Unintended Logic"
+
 class GhostSpawnRate(Range):
     """
     Percentage chance of ghosts spawning, per room. 0 is disabled, 100 means they appear every room.
@@ -93,6 +99,7 @@ class AUSOptions(PerGameCommonOptions, DeathLinkMixin):
     disable_heart_barriers: DisableHeartBarriers
     ghost_spawn_rate: GhostSpawnRate
     special_boss_music: SpecialBossMusic
+    hard_logic: HardLogic
     
   
   

@@ -103,6 +103,7 @@ class AUSWorld(World):
             "disable_heart_barriers": self.options.disable_heart_barriers.value,
             "ghost_spawn_rate": self.options.ghost_spawn_rate.value,
             "special_boss_music": self.options.special_boss_music.value,
+            "hard_logic": self.options.hard_logic.value,
             "DeathLink": bool(self.options.death_link)
         }
         
