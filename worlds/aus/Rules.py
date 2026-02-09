@@ -268,7 +268,7 @@ class AUSRules:
         skylands_location_rules = {
             L_SKYLANDS_CHEST: true,
             L_SKYLANDS_TOLL: lambda state: self.hatched(state),
-            L_SKYLANDS_DUCK: lambda state: self.can_divebomb(state) and self.can_duck(state),
+            L_SKYLANDS_DUCK: lambda state: self.can_divebomb(state) and self.can_duck(state) and self.hatched(state),
             L_SKYLANDS_BALLOONS: lambda state: self.can_divebomb(state) and (self.has_range(state) or world.options.hard_logic),
             L_SKYLANDS_PORTAL: true,
             L_SKYLANDS_DOOR: lambda state: self.can_divebomb(state),
