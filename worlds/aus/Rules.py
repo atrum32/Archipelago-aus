@@ -171,12 +171,12 @@ class AUSRules:
             L_FIRECAGE_LEFTSAVE: true,
             L_FIRECAGE_CRUSHERS: lambda state: self.can_shoot(state),
             L_FIRECAGE_UPPERDOOR: true,
-            L_FIRECAGE_MIDDLE: lambda state: self.jump_height_min(state, 8) and self.has_yellow_energy(state),
-            L_FIRECAGE_LOWERDOOR: lambda state: self.jump_height_min(state, 6.5) and self.has_yellow_energy(state),
+            L_FIRECAGE_MIDDLE: lambda state: self.jump_height_min(state, 8) and (self.has_yellow_energy(state) or world.options.closed_end_logic),
+            L_FIRECAGE_LOWERDOOR: lambda state: self.jump_height_min(state, 6.5) and (self.has_yellow_energy(state) or world.options.closed_end_logic),
             L_FIRECAGE_RIGHTSAVE: lambda state: self.jump_height_min(state, 6.5) and self.can_slide(
                 state) and self.has_yellow_energy(state),
-            L_FIRECAGE_POSTBOSS: lambda state: self.jump_height_min(state, 6.5) and self.has_yellow_energy(state) and self.hatched(state),
-            L_FIRECAGE_BOSS: lambda state: self.jump_height_min(state, 6.5) and self.has_yellow_energy(state) and self.hatched(state),
+            L_FIRECAGE_POSTBOSS: lambda state: self.jump_height_min(state, 6.5) and (self.has_yellow_energy(state) or world.options.closed_end_logic) and self.hatched(state),
+            L_FIRECAGE_BOSS: lambda state: self.jump_height_min(state, 6.5) and (self.has_yellow_energy(state) or world.options.closed_end_logic) and self.hatched(state),
         }
 
         grotto_location_rules = {
@@ -328,7 +328,7 @@ class AUSRules:
                 and self.has_red_energy(state) and self.has_yellow_energy(state) and self.can_slide(state) and self.can_divebomb(state),
             L_STONECASTLE_POSTBOSS: lambda state: ((self.jump_height_min(state, 4) and self.double_jump_min(state,
                                                                                                             1)) or self.jump_height_min(
-                state, 5)) and self.can_divebomb(state) and self.has_red_energy(state),
+                state, 5)) and (self.can_divebomb(state) or world.options.closed_end_logic) and self.has_red_energy(state),
             L_STONECASTLE_POSTBOSS2: lambda state: (self.jump_height_min(state, 8) or (world.options.hard_logic and self.single_jump_min(state, 3) and self.double_jump_min(state, 2)))
                 and self.has_red_energy(state) and self.has_yellow_energy(state) and self.can_slide(state) and self.can_divebomb(state),
         }
