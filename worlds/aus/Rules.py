@@ -222,7 +222,7 @@ class AUSRules:
         }
 
         mountside_location_rules = {
-            L_MOUNTSIDE_FLOWER: lambda state: self.double_jump_min(state, 3),
+            L_MOUNTSIDE_FLOWER: lambda state: self.double_jump_min(state, 3) or world.options.closed_end_logic,
             L_MOUNTSIDE_DOOR: true,
         }
 
