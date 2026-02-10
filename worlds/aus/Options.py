@@ -61,7 +61,7 @@ class DisableHeartBarriers(Toggle):
 
 class ClosedEndLogic(Toggle):
     """Adds into logic locations that require you to return to previous save after getting them, due to them putting you in a dead end without specific items.
-    This affects two areas specifically: the check after the first boss in StoneCastle (usually requiring DiveBomb to leave), and the second half of FireCage (requiring yellow energy to get to the save)"""
+    This affects three areas specifically: the two checks after the first Grotto boss (usually requiring 2 jump upgrades to leave), the check after the first boss in StoneCastle (usually requiring DiveBomb to leave), and the second half of FireCage (requiring yellow energy to get to the save)"""
     display_name = "Enable Return to Previous Save Logic"
 
 class HardLogic(Toggle):

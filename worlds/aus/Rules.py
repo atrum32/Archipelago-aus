@@ -26,7 +26,7 @@ class AUSRules:
             A_NIGHTCLIMB: lambda state: self.jump_height_min(state, 5) and self.has_fire(state) and self.double_jump_min(state, 1),
             A_DEEPDIVE: lambda state: self.jump_height(state) + (self.can_duck(state) and self.has_red_energy(state)) * 2 >= 8 and
                                       self.can_divebomb(state) and (self.hatched(state) or (world.options.hard_logic and self.jump_height_min(state, 8))),
-            A_FIRECAGE: lambda state: self.can_stick(state) and self.has_red_energy(state),
+            A_FIRECAGE: lambda state: self.can_stick(state) and self.has_red_energy(state) and self.single_jump_min(state, 2),
             A_MOUNTSIDE: lambda state: self.jump_height(state) + self.can_duck(state) * 2 >= 8 and
                                        self.has_red_energy(state) and (self.hatched(state) or (world.options.hard_logic and self.jump_height_min(state, 8))),
             A_THE_CURTAIN: lambda state: self.jump_height_min(state, 8) and self.can_slide(state) and
@@ -144,7 +144,7 @@ class AUSRules:
         farfall_location_rules = {
             L_FARFALL_KILL: lambda state: self.jump_height_min(state, 5) and self.double_jump_min(state, 1),    #considered part of stonecastle
             L_FARFALL_CHEST: lambda state: self.jump_height_min(state, 4),    #considered part of stonecastle
-            L_FARFALL_5BALLOONS: lambda state: self.jump_height_min(state, 7) and self.hatched(state),
+            L_FARFALL_5BALLOONS: lambda state: (self.jump_height_min(state, 7) or (world.options.hard_logic and self.jump_height_min(state, 6))) and self.hatched(state),
             L_FARFALL_SPECIALBALLOON: true,    #considered part of the bottom
             L_FARFALL_PITDOOR: lambda state: self.jump_height_min(state, 5) and self.double_jump_min(state,
                                                                                                      1) and self.can_divebomb(
@@ -180,8 +180,8 @@ class AUSRules:
         }
 
         grotto_location_rules = {
-            L_GROTTO_POSTBOSS: lambda state: self.jump_height_min(state, 3.5),
-            L_GROTTO_BOSS: lambda state: self.jump_height_min(state, 3.5),
+            L_GROTTO_POSTBOSS: lambda state: self.jump_height_min(state, 4) or (world.options.closed_end_logic and self.jump_height_min(state, 3)),
+            L_GROTTO_BOSS: lambda state: self.jump_height_min(state, 4) or (world.options.closed_end_logic and self.jump_height_min(state, 3)),
             L_GROTTO_FLOWER: lambda state: (self.jump_height(state) + (
                     self.can_duck(state) and self.has_red_energy(state)) * 2 >= 8) and (self.hatched(state) or (world.options.hard_logic and self.jump_height_min(state, 8))),
             L_GROTTO_MURAL: lambda state: self.jump_height_min(state, 4) and
@@ -334,8 +334,8 @@ class AUSRules:
         }
 
         strangecastle_location_rules = {
-            L_STRANGECASTLE_END: lambda state: self.jump_height_min(state, 6) and self.has_fire(state),
-            L_STRANGECASTLE_DOOR: lambda state: self.jump_height_min(state, 6) and self.has_fire(state),
+            L_STRANGECASTLE_END: lambda state: self.jump_height_min(state, 6) and self.single_jump_min(state, 2) and self.has_fire(state),
+            L_STRANGECASTLE_DOOR: lambda state: self.jump_height_min(state, 6) and self.single_jump_min(state, 2) and self.has_fire(state),
         }
 
         undertomb_location_rules = {
