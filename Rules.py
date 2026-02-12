@@ -26,7 +26,7 @@ class AUSRules:
             A_NIGHTCLIMB: lambda state: self.jump_height_min(state, 5) and self.has_fire(state) and self.double_jump_min(state, 1),
             A_DEEPDIVE: lambda state: self.jump_height(state) + (self.can_duck(state) and self.has_red_energy(state)) * 2 >= 8 and
                                       self.can_divebomb(state) and (self.hatched(state) or (world.options.hard_logic and self.jump_height_min(state, 8))),
-            A_FIRECAGE: lambda state: self.can_stick(state) and self.has_red_energy(state) and self.single_jump_min(state, 2) and (self.can_shoot(state) or world.options.hard_logic),
+            A_FIRECAGE: lambda state: self.can_stick(state) and self.has_red_energy(state) and self.single_jump_min(state, 2) and self.can_shoot(state),
             A_MOUNTSIDE: lambda state: self.jump_height(state) + self.can_duck(state) * 2 >= 8 and
                                        self.has_red_energy(state) and (self.hatched(state) or (world.options.hard_logic and self.jump_height_min(state, 8))),
             A_THE_CURTAIN: lambda state: self.jump_height_min(state, 8) and self.can_slide(state) and
@@ -168,7 +168,7 @@ class AUSRules:
         firecage_location_rules = {
             L_FIRECAGE_TOLL: lambda state: self.hatched(state) and (self.can_slide(state) or self.has_fire(state)),
             L_FIRECAGE_LEFTSAVE: true,
-            L_FIRECAGE_CRUSHERS: lambda state: self.can_shoot(state),
+            L_FIRECAGE_CRUSHERS: true,
             L_FIRECAGE_UPPERDOOR: true,
             L_FIRECAGE_MIDDLE: lambda state: self.jump_height_min(state, 8) and (self.has_yellow_energy(state) or world.options.closed_end_logic),
             L_FIRECAGE_LOWERDOOR: lambda state: self.jump_height_min(state, 6.5) and (self.has_yellow_energy(state) or world.options.closed_end_logic),
